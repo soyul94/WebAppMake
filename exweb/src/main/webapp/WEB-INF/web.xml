@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>exweb</display-name>
+  <welcome-file-list> 
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
+  
+  
+  <!-- com.exam.HelloServlet클래스를 Hello라는 이름으로 등록 -->
+  <servlet>
+	<servlet-name>Hello</servlet-name>
+	<servlet-class>com.exam.HelloServlet</servlet-class>
+  </servlet>
+  <!-- /hello.do 주소로 요청이 오면 hello라는 이름의 서블릿 클래스를 실행 -->
+  <servlet-mapping>
+  	<servlet-name>Hello</servlet-name>
+  	<url-pattern>/hello.do</url-pattern>
+  </servlet-mapping>
+ 
+  <!-- com.exam.ParamServlet클래스를 Param라는 이름으로 등록 -->  
+  <servlet>
+	<servlet-name>Param</servlet-name>
+	<servlet-class>com.exam.ParamServlet</servlet-class>
+  </servlet>
+  <!-- /param.do 주소로 요청이 오면 Param라는 이름의 서블릿 클래스를 실행 -->
+  <servlet-mapping>
+  	<servlet-name>Param</servlet-name>
+  	<url-pattern>/param.do</url-pattern>
+  </servlet-mapping>
+  
+  <!-- com.exam.WelcomeServlet클래스를 Welvlet라는 이름으로 등록 -->  
+  <servlet>
+	<servlet-name>Welvlet</servlet-name>
+	<servlet-class>com.exam.WelcomeServlet</servlet-class>
+  </servlet>
+  <!-- /welcome.do 주소로 요청이 오면 Welvlet라는 이름의 서블릿 클래스를 실행 -->
+  <servlet-mapping>
+  	<servlet-name>Welvlet</servlet-name>
+  	<url-pattern>/welcome.do</url-pattern>
+  </servlet-mapping>
+  
+   <!-- com.exam.OrderServlet클래스를 Order라는 이름으로 등록 -->  
+  <servlet>
+	<servlet-name>OrdServlet</servlet-name>
+	<servlet-class>com.exam.OrderServlet</servlet-class>
+  </servlet>
+  <!-- /order.do 주소로 요청이 오면 OrderServlet라는 이름의 서블릿 클래스를 실행 -->
+  <servlet-mapping>
+  	<servlet-name>OrdServlet</servlet-name>
+  	<url-pattern>/order.do</url-pattern>
+  </servlet-mapping>
+  
+  <!-- com.exam.LifeServlet클래스를 Life라는 이름으로 등록 -->
+  <servlet>
+	<servlet-name>Life</servlet-name>
+	<servlet-class>com.exam.LifeServlet</servlet-class>
+	<init-param>	<!-- 서블릿이 접근할 수 있는 변수 정의. -->
+		<param-name>id</param-name>
+		<param-value>web</param-value>
+	</init-param>
+	<!-- <load-on-startup>N</load-on-startup>
+		: 값을 1이상의 정수로 설정. 서버(톰캣)이 시작 시 요청이 없어도 자동으로 서블릿 객체 생성
+		이를 설정하지 않으면 브라우져로 주소요청이 들어갈 시에 서블릿 객체를 생성한다.
+	 -->
+  </servlet>
+  <!-- /life.do 주소로 요청이 오면 Life라는 이름의 서블릿 클래스를 실행 -->
+  <servlet-mapping>
+  	<servlet-name>Life</servlet-name>
+  	<url-pattern>/life.do</url-pattern>
+  </servlet-mapping>
+  
+  
+</web-app>
