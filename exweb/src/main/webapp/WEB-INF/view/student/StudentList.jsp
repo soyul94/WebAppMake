@@ -9,32 +9,28 @@
 <title>학생 목록</title>
 
 <style>
-.center{
-	text-align:center; 
-	margin:auto;
-	border-width:2px; 
-	border-style:solid; border-color:gray; 
+
+table{
+	text-align:center;
+	margin: 10px;
 	border-collapse:collapse;
+	border : 2px solid gray;
 }
 th{
 	font-size:1.3em; 
-	border:2px; 
-	border-style:solid;
-	border-color:gray; 
+	border : 2px solid gray;
 	width:150px; 
 	padding:10px; 
 	background-color:#eee;
 }
 td{
 	font-size:1em; 
-	border:2px; 
-	border-style:solid; 
-	border-color:gray; 
+	border : 2px solid gray;
 	width:150px; 
 	padding:10px;
 }
 h2,p{
-	text-align:center; 
+	margin: 5px 15px;
 }
 input{
 	margin:10px; 
@@ -45,6 +41,10 @@ input{
 	background:#fff; 
 	margin:0; 
 	font-size:1em;
+}
+#stu_no:hover{
+	color: skyblue;
+	cursor: progress;
 }
 </style>
 </head>
@@ -61,7 +61,7 @@ input{
 			</form>
 		</figcaption>
 	
-		<table class="center">
+		<table>
 		<tr>
 			<th>학번</th>
 			<th>학생명</th>
@@ -70,13 +70,13 @@ input{
 		<c:forEach var="vo" items="${studentList}">
 			<tr>
 			<td>
-			<form action="<c:url value="/student/detail.do"/>" method="get">
-			<input type="hidden" name="stu_no" value="${vo.stu_no}"/>
-			<input id="stu_no" type="submit" value="${vo.stu_no}"/>
+				<form action="<c:url value="/student/detail.do"/>" method="get">
+				<input type="hidden" name="stu_no" value="${vo.stu_no}"/>
+				<input id="stu_no" type="submit" value="${vo.stu_no}" hover=/>
 			</form>
 			</td>
-			<td>${vo.stu_name}</td>
-			<td>${vo.stu_score}</td>	
+				<td>${vo.stu_name}</td>
+				<td>${vo.stu_score}</td>	
 			</tr>
 		</c:forEach>
 		</table>

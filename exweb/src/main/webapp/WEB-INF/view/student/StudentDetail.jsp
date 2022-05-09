@@ -8,32 +8,27 @@
 <title>학생 목록</title>
 
 <style>
-.center{
-	text-align:center; 
-	margin:auto;
-	border-width:2px; 
-	border-style:solid; border-color:gray; 
+table{
+	text-align:center;
+	margin: 10px;
 	border-collapse:collapse;
+	border : 2px solid gray;
 }
 th{
 	font-size:1.3em; 
-	border:2px; 
-	border-style:solid;
-	border-color:gray; 
+	border : 2px solid gray;
 	width:150px; 
 	padding:10px; 
 	background-color:#eee;
 }
 td{
 	font-size:1em; 
-	border:2px; 
-	border-style:solid; 
-	border-color:gray; 
+	border : 2px solid gray;
 	width:150px; 
 	padding:10px;
 }
 h2,p{
-	text-align:center; 
+	margin: 5px 15px;
 }
 input{
 	margin:10px; 
@@ -50,7 +45,7 @@ input{
 
 <body>
 	<h2>STUDENT_TABLE</h2></b>
-	<p>DB로부터 리스트를 받아와 출력하기</p>
+	<p>DB로부터 튜플을 받아와 출력하기</p>
 	
 	<figure>
 		<figcaption>

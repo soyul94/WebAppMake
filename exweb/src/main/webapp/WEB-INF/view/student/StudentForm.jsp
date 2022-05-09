@@ -7,6 +7,9 @@
 <meta charset="UTF-8">
 <title>여기는 StuFormServlet !</title>
 <style>
+h2,p{
+	margin: 5px 15px;
+}
 input{margin:5px; padding:5px;}
 </style>
 </head>

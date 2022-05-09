@@ -52,7 +52,7 @@ public class StudentDAO {
 	public  ArrayList<StudentVO> selectList() {
 		String stu_no;	String name;	int score;
 		StudentVO student;
-		String all_select_SQL= "select STU_NO, STU_NAME, STU_SCORE from STUDENT";
+		String all_select_SQL= "select STU_NO, STU_NAME, STU_SCORE from STUDENT ORDER BY STU_NO DESC";
 		ArrayList<StudentVO> list= new ArrayList<StudentVO>(); 
 		
 		try(							   													
