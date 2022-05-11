@@ -74,9 +74,12 @@ input{
 			<input type='hidden' name='stu_no' value='${vo.stu_no}'/>
 			<input type='submit' value='학생 점수 변경'/>
 		</form>
-		<form action='<c:url value="/student/delete.do" />' method='get'>
+		<form action='<c:url value="/student/form.do" />' method='get'>
+			<input type='hidden' name='menu' value='updateAll'/>
 			<input type='hidden' name='stu_no' value='${vo.stu_no}'/>
-			<input type='submit' value='학생 정보 삭제'/>
+			<input type='hidden' name='stu_name' value='${vo.stu_name}'/>
+			<input type='hidden' name='stu_score' value='${vo.stu_score}'/>
+			<input type='submit' value='학생 정보 변경'/>
 		</form> 
 	</div>
 </body>

@@ -20,9 +20,13 @@ public class StuFormServlet extends HttpServlet{
 		
 		String menu=req.getParameter("menu");
 		String stu_no=req.getParameter("stu_no");
+		String stu_name=req.getParameter("stu_name");
+		String stu_score=req.getParameter("stu_score"); //이거 왜 get으로 꺼냈다가 다시 set하는지 설명 다시 듣기.
 		
 		req.setAttribute("menu", menu);
 		req.setAttribute("stu_no", stu_no);
+		req.setAttribute("stu_name", stu_name);
+		req.setAttribute("stu_score", stu_score);
 		
 		req.getRequestDispatcher("/WEB-INF/view/student/StudentForm.jsp").forward(req, resp);
 

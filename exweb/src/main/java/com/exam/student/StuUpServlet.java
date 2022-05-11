@@ -21,9 +21,22 @@ public class StuUpServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");//post방식으로 전송되는 한글파라미터 인코딩	
 		resp.setContentType("text/html; charset=UTF-8");
 		
-		String stu_no=req.getParameter("stu_no");
-		String stu_score=req.getParameter("stu_score");
-		int num= studentDao.update(stu_score,stu_no);
+		String menu=req.getParameter("menu");
+		
+		if(menu.equals("update")) {
+			String stu_no=req.getParameter("stu_no");
+			String stu_score=req.getParameter("stu_score");
+			studentDao.update(stu_score,stu_no);
+		}
+		else if(menu.equals("updateAll")) {
+			String up_stu_no =req.getParameter("up_stu_no");
+			StudentVO stu = new StudentVO();
+			stu.setStu_no(req.getParameter("stu_no"));
+			stu.setStu_name(req.getParameter("stu_name"));
+			stu.setStu_score(Integer.parseInt(req.getParameter("stu_score")));
+			studentDao.updateAll(stu,up_stu_no);
+		}
+		
 		
 		//resp.sedRedirect("이동할 주소") : 명령을 사용하여 웹브라우저에게 특정 주소로 이동하라는 명령을 담은 응답을 전송
 		resp.sendRedirect(req.getContextPath()+"/student/list.do");

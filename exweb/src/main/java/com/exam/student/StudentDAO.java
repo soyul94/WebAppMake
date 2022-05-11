@@ -96,6 +96,7 @@ public class StudentDAO {
 		return num;
 	}
 	
+	//입력받은 ID와 동일한 id값이 있는 행을 수정
 	public int update(String stu_score,String stu_no) {
 		String update_SQL= "UPDATE STUDENT SET STU_SCORE = ? WHERE STU_NO = ? ";
 		int num;	
@@ -105,6 +106,26 @@ public class StudentDAO {
 		){	
 			pre_state.setString(1, stu_score);
 			pre_state.setString(2, stu_no);
+			num = pre_state.executeUpdate(); 	
+		}
+		catch(SQLException e) {			
+			num=0;
+			e.printStackTrace();	
+		}
+		return num;
+	}
+	
+	public int updateAll(StudentVO student, String up_stu_no) {
+		String updateAll_SQL= "UPDATE STUDENT SET STU_NO = ?, STU_SCORE = ?, STU_NAME = ? WHERE STU_NO = ? ";
+		int num;	
+		try(							   
+			Connection conn = DriverManager.getConnection(url, user, password);										
+			PreparedStatement pre_state = conn.prepareStatement(updateAll_SQL);																
+		){	
+			pre_state.setString(1, student.getStu_no());
+			pre_state.setInt(2, student.getStu_score());
+			pre_state.setString(3, student.getStu_name());
+			pre_state.setString(4, up_stu_no);
 			num = pre_state.executeUpdate(); 	
 		}
 		catch(SQLException e) {			

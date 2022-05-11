@@ -16,25 +16,25 @@ table{
 	border-collapse:collapse;
 	border : 2px solid gray;
 }
+th,td{
+	width:150px;
+	height: 20px;
+	padding:10px;
+}
 th{
 	font-size:1.3em; 
-	border : 2px solid gray;
-	width:150px; 
-	padding:10px; 
+	border : 2px solid gray; 
 	background-color:#eee;
 }
 td{
 	font-size:1em; 
 	border : 2px solid gray;
-	width:150px; 
-	padding:10px;
 }
 h2,p{
 	margin: 5px 15px;
 }
 input{
-	margin:10px; 
-	padding:5px;
+	padding:5px 10px;
 }
 #stu_no{
 	border:0;
@@ -66,17 +66,24 @@ input{
 			<th>학번</th>
 			<th>학생명</th>
 			<th>점수</th>
+			<th>관리</th>
 		</tr>
 		<c:forEach var="vo" items="${studentList}">
 			<tr>
-			<td>
-				<form action="<c:url value="/student/detail.do"/>" method="get">
-				<input type="hidden" name="stu_no" value="${vo.stu_no}"/>
-				<input id="stu_no" type="submit" value="${vo.stu_no}" hover=/>
-			</form>
-			</td>
+				<td>
+					<form action="<c:url value="/student/detail.do"/>" method="get">
+						<input type="hidden" name="stu_no" value="${vo.stu_no}"/>
+						<input id="stu_no" type="submit" value="${vo.stu_no}" />
+					</form>
+				</td>
 				<td>${vo.stu_name}</td>
-				<td>${vo.stu_score}</td>	
+				<td>${vo.stu_score}</td>
+				<td>
+					<form action='<c:url value="/student/delete.do" />' method='get'>
+						<input type='hidden' name='stu_no' value='${vo.stu_no}'/>
+						<input type='submit' value='삭제'/>
+					</form> 
+				</td>	
 			</tr>
 		</c:forEach>
 		</table>
