@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>학생 목록</title>
-
+<script src="http://code.jquery.com/jquery-latest.min.js"></script> <!-- url주소에서 가장 최신의 제이쿼리를 불러옴 -->
 <style>
 
 table{
@@ -79,7 +79,7 @@ input{
 				<td>${vo.stu_name}</td>
 				<td>${vo.stu_score}</td>
 				<td>
-					<form action='<c:url value="/student/delete.do" />' method='get'>
+					<form class="btn-del" action='<c:url value="/student/delete.do" />' method='get'>
 						<input type='hidden' name='stu_no' value='${vo.stu_no}'/>
 						<input type='submit' value='삭제'/>
 					</form> 
@@ -89,5 +89,15 @@ input{
 		</table>
 	</figure>
 	<p>해당 학번을 클릭하면 상세 페이지로 이동</p>
+	
+	<script>
+		$(document).ready(function(){
+			$(".btn-del").click(function(){
+				if(!confirm("삭제하시겠습니까 ?")){
+					return false;
+				} //confirm : 상단에 경고창 뜸
+			});
+		});
+	</script>
 </body>
 </html>
