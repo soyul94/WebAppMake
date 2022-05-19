@@ -13,14 +13,14 @@ public class StudentDAO {
 	String password = "web1234";//DB사용자 비밀번호
 	
 	//초기화 블럭 : 객체 생성시 한번만 작동함. 이렇게 말고 생성자 안에 추가해서 하는 방식도 있음.
-	{
-		try {
-		Class.forName("oracle.jdbc.OracleDriver");	
-		} 
-		catch (ClassNotFoundException e){ 
-		e.printStackTrace();		  
-		}
-	}
+//	{
+//		try {
+//		Class.forName("oracle.jdbc.OracleDriver");	
+//		} 
+//		catch (ClassNotFoundException e){ 
+//		e.printStackTrace();		  
+//		}
+//	}
 	
 	public StudentVO select(String stu_no) {
 		String num;	 String name;	int score;

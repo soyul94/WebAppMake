@@ -3,6 +3,8 @@ package com.exam.member;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,13 +20,16 @@ import javax.servlet.http.HttpServletResponse;
 //웹브라우저에서 "http://localhost:8000/exweb/student/list.do"로 접속하면 학생목록이 출력되도록 구현
 @WebServlet("/member/list.do")
 public class MemListServlet extends HttpServlet { 
-	MemberDAO memberDao = new MemberDAO(); //service가 몇번이 실행되던 1번만 생성되어야 하기 때문에 service 밖에 있어야한다.
+	//MemberDao memberDao = new MemberDAOJdbc(); //service가 몇번이 실행되던 1번만 생성되어야 하기 때문에 service 밖에 있어야한다.
+	
+	MemberDao memberDao = new MemberDaoMybatis();
+	
 	@Override 
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 클라이언트가 "member/list.do"로 요청을 보내면 웹브라우저에 회원목록이 출력되도록 구현
 		System.out.println("MemListServlet 실행 ! ");
 		
-		ArrayList<MemberVO> list = memberDao.selectList(); //테이블을 읽는 것은 요청이 올 때마다 실행.
+		List<MemberVO> list = memberDao.selectMemberList(); //테이블을 읽는 것은 요청이 올 때마다 실행.
 		req.setAttribute("memList", list);
 		
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/member/MemList.jsp");

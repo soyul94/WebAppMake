@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/member/addform.do")
+//@WebServlet("/member/addform.do")
 public class MemAddFormServlet extends HttpServlet { 
 	@Override 
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

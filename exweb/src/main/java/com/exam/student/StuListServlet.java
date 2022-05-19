@@ -27,6 +27,10 @@ public class StuListServlet extends HttpServlet {
 		req.setAttribute("studentList", list);
 		
 		req.getRequestDispatcher("/WEB-INF/view/student/StudentList.jsp").forward(req, resp);
+		
+		
+		
+		
 /*		
 		PrintWriter out = resp.getWriter();	
 		out.println("<!DOCTYPE html>");

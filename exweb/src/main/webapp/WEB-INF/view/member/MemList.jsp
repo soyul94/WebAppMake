@@ -12,7 +12,7 @@
 	<h2>MEMBER_TABLE</h2></b>
 	<p>DB로부터 리스트를 받아와 출력하기</p>
 	
-	<button onclick="location.href='${pageContext.request.contextPath}/member/addform.do'">회원추가</button>
+	<button onclick="location.href='${pageContext.request.contextPath}/member/add.do'">회원추가</button>
 	<br> <br>
 	
 	<table class="center">
@@ -25,14 +25,24 @@
 	</tr>
 		<c:forEach var="vo" items="${memList}" >
 			<tr>
-			<td>${vo.memId}</td>
-			<td>${vo.memPW}</td>
-			<td>${vo.memName}</td>
-			<td>${vo.memPoint}</td>
+				<td>
+				<%--<form action="${pageContext.request.contextPath}/member/edit.do" method='get'>
+						<input type='hidden' name='memId' value="${vo.memId}">
+						<input type='submit' value='<c:out value="${vo.memId}" />'/>
+					</form> --%>
+					<c:url var="edit" value="/member/edit.do">
+						<c:param name="memId" value="${vo.memId}"/>
+					</c:url>
+					<a href="${edit}"><c:out value="${vo.memId}" /></a>
+				</td>
+				<td><c:out value="${vo.memPW}" /></td>
+				<td><c:out value="${vo.memName}" /></td>
+				<td><c:out value="${vo.memPoint}" /></td>
+				<%--int변수에는 악성스크립트 넣기는 어려움 꼭 c태그 안써도 됌. --%>
 			<td>
 			<form action="${pageContext.request.contextPath}/member/delete.do" method='get'>
-			<input type='hidden' name='memId' value="${vo.memId}">
-			<input type='submit' value='삭제'/>
+				<input type='hidden' name='memId' value="${vo.memId}">
+				<input type='submit' value='삭제'/>
 			</form>
 			</td>
 		</c:forEach>

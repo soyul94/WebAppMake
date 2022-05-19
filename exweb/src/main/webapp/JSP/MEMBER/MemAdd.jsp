@@ -1,20 +1,22 @@
 <%@page import="com.exam.member.MemberVO"%>
-<%@page import="com.exam.member.MemberDAO"%>
+<%@page import="com.exam.member.MemberDAOJdbc"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<% MemberDAO memberDao = new MemberDAO(); %>
+<%
+    MemberDAOJdbc memberDao = new MemberDAOJdbc();
+    %>
 
 
-<% 
+<%
 request.setCharacterEncoding("UTF-8"); //이거 없으면 한글 전송 안돼용 !
 MemberVO vo= new MemberVO(); 
 vo.setMemId(request.getParameter("memId"));
 vo.setMemPW(request.getParameter("memPW"));
 vo.setMemName(request.getParameter("memName"));
 vo.setMemPoint(Integer.parseInt(request.getParameter("memPoint")));
-int num= memberDao.insert(vo);
+int num= memberDao.insertMember(vo);
 %>
 
 <c:redirect url="./MemList.jsp"/>

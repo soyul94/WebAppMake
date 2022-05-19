@@ -1,12 +1,14 @@
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.exam.member.MemberDAO"%>
+<%@page import="com.exam.member.MemberDAOJdbc"%>
 <%@page import="com.exam.member.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%! MemberDAO memberDao = new MemberDAO(); %> <%--s ervice가 몇번이 실행되던 1번만 생성되어야 하기 때문에 service 밖에 있어야한다. --%>
+<%!MemberDAOJdbc memberDao = new MemberDAOJdbc();%> <%--s ervice가 몇번이 실행되던 1번만 생성되어야 하기 때문에 service 밖에 있어야한다. --%>
 
-<% ArrayList< MemberVO > list = memberDao.selectList(); //테이블을 읽는 것은 요청이 올 때마다 실행. %>		
+<%
+ArrayList< MemberVO > list = memberDao.selectMemberList(); //테이블을 읽는 것은 요청이 올 때마다 실행.
+%>		
 
 <!DOCTYPE html>
 <html>
