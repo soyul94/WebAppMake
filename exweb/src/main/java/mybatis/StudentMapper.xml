@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.exam.student.StudentDAO">
+
+	<resultMap type="com.exam.student.StudentVO" id="StudentVO">
+		<id	property="stu_no" column="STU_NO" />		<!-- PK컬럼은 id로 선언한다. -->
+		<result property="stu_name" column="STU_NAME" />
+		<result property="stu_score" column="STU_SCORE" />
+	</resultMap>
+  
+  <select id="selectStudent" resultMap="StudentVO" parameterType="string">
+  	select STU_NO, STU_NAME, STU_SCORE from STUDENT where STU_NO=#{stu_no}
+  </select>
+  
+  <select id="selectStudentList" resultMap="StudentVO">
+  	select STU_NO, STU_NAME, STU_SCORE from STUDENT ORDER BY STU_NO DESC
+  </select>
+  
+  <insert id="insertStudent" parameterType="com.exam.student.StudentVO">
+  	INSERT INTO STUDENT(STU_NO, STU_NAME, STU_SCORE) VALUES(#{stu_no}, #{stu_name}, #{stu_score})
+  </insert>
+  
+  <update id="updateStudent" parameterType="com.exam.student.StudentVO">
+  	UPDATE STUDENT SET STU_SCORE=#{stu_score}, STU_NAME=#{stu_name} WHERE STU_NO=#{stu_no}
+  </update>
+  
+  <delete id="deleteStudent" parameterType="string">
+  	delete from STUDENT where STU_NO = #{stu_no}
+  </delete>
+  
+</mapper>	

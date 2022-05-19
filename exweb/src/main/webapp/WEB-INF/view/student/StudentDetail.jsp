@@ -68,14 +68,9 @@ input{
 		</tr>
 		</table>
 	</figure>
-	<div style='display:flex; margin-left:30px;'>
+	<div style='display:flex; margin-left:30px;'>		
 		<form action='<c:url value="/student/form.do" />' method='get'>
 			<input type='hidden' name='menu' value='update'/>
-			<input type='hidden' name='stu_no' value='${vo.stu_no}'/>
-			<input type='submit' value='학생 점수 변경'/>
-		</form>
-		<form action='<c:url value="/student/form.do" />' method='get'>
-			<input type='hidden' name='menu' value='updateAll'/>
 			<input type='hidden' name='stu_no' value='${vo.stu_no}'/>
 			<input type='hidden' name='stu_name' value='${vo.stu_name}'/>
 			<input type='hidden' name='stu_score' value='${vo.stu_score}'/>

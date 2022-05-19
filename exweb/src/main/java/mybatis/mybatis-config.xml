@@ -13,6 +13,7 @@
 	<!-- 마이바티스 설정파일에서 사용하기 쉽게 미리 alias하는 것 -->
 	<typeAliases>
 		<typeAlias alias="MemberVO" type="com.exam.member.MemberVO"/>
+		<typeAlias alias="StudentVO" type="com.exam.student.StudentVO"/>
 	</typeAliases>
 	
 	<environments default="development">
@@ -29,6 +30,7 @@
   
   <mappers> <!-- 마이바티스를 통해서 실행할 SQL문들을 정의해놓은 XML파일들 -->
     <mapper resource="mybatis/MemberMapper.xml"/>
+    <mapper resource="mybatis/StudentMapper.xml"/>
   </mappers>
   
 </configuration>

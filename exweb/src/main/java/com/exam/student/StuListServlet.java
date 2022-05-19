@@ -3,6 +3,7 @@ package com.exam.student;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 //회원 정보를 보여주는 서블릿 작성
 @WebServlet("/student/list.do")
 public class StuListServlet extends HttpServlet { 
-	StudentDAO studentDao = new StudentDAO(); //service가 몇번이 실행되던 1번만 생성되어야 하기 때문에 service 밖에 있어야한다.
+	StudentDAO studentDao = new StudentDaoMybatis(); //service가 몇번이 실행되던 1번만 생성되어야 하기 때문에 service 밖에 있어야한다.
 			
 	@Override 
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,9 +24,9 @@ public class StuListServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");//post방식으로 전송되는 한글파라미터 인코딩	
 		resp.setContentType("text/html; charset=UTF-8");
 		
-		ArrayList<StudentVO> list = studentDao.selectList(); //테이블을 읽는 것은 요청이 올 때마다 실행.
+		List<StudentVO> list = studentDao.selectList(); //테이블을 읽는 것은 요청이 올 때마다 실행.
 		req.setAttribute("studentList", list);
-		
+
 		req.getRequestDispatcher("/WEB-INF/view/student/StudentList.jsp").forward(req, resp);
 		
 		

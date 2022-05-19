@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 //회원 정보를 보여주는 서블릿 작성
 @WebServlet("/student/detail.do")
 public class StuDetailServlet extends HttpServlet { 
-	StudentDAO studentDao = new StudentDAO(); //service가 몇번이 실행되던 1번만 생성되어야 하기 때문에 service 밖에 있어야한다.
+	StudentDAO studentDao = new StudentDaoMybatis(); //service가 몇번이 실행되던 1번만 생성되어야 하기 때문에 service 밖에 있어야한다.
 			
 	@Override 
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

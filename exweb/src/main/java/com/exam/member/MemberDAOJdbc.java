@@ -94,4 +94,16 @@ public class MemberDAOJdbc implements MemberDao {
 		return num;
 	}
 
+	@Override
+	public MemberVO selectMember(String memId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int updateMember(MemberVO member) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }//class끝

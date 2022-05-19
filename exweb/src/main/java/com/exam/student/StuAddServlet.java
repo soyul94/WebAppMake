@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/student/add.do")
 public class StuAddServlet extends HttpServlet { 
-	StudentDAO studentDao = new StudentDAO(); 
+	StudentDAO studentDao = new StudentDaoMybatis(); 
 	@Override 
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		

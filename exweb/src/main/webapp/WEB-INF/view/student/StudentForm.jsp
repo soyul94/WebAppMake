@@ -30,43 +30,24 @@ input{margin:5px; padding:5px;}
 				<input type="submit" value='등록'/>
 			</form>
 		</c:when>
+		
 		<c:when test="${menu eq 'update'}">
-			<p>DB의 인스턴스 부분 변경하기</p>		
+			<p>DB에 인스턴스 변경하기</p>		
 			<div style='display:flex;'>	
 				<form action='<c:url value="/student/list.do" />'>
 					<input type="submit" value='목록가기'/>
 				</form>
 				<form action='<c:url value="/student/detail.do" />'>
-					<input type='hidden' name='stu_no' value='${stu_no}'/>
-					<input type="submit" value='돌아가기'/>
-				</form>
-			</div>
-			<h4>${stu_no} 님의 변경된 점수를 입력해주세요</h4>
-			<form action='<c:url value="/student/update.do" />' method='post'>
-				<input type='hidden' name='menu' value='${"update"}'/> 
-				<input type='hidden' name='stu_no' value='${stu_no}'/>
-				점수 : <input type = 'text' name='stu_score'/><br>
-				<input type="submit" value='변경'/>
-			</form>	
-		</c:when>
-		<c:when test="${menu eq 'updateAll'}">
-			<p>DB에 인스턴스 모두 변경하기</p>		
-			<div style='display:flex;'>	
-				<form action='<c:url value="/student/list.do" />'>
-					<input type="submit" value='목록가기'/>
-				</form>
-				<form action='<c:url value="/student/detail.do" />'>
-					<input type='hidden' name='stu_no' value='${stu_no}'/>
+					<input type='hidden' name='stu_no' value='${student.stu_no}'/>
 					<input type="submit" value='돌아가기'/>
 				</form>
 			</div>
 			<h4>${stu_no} 님의 새로운 정보를 입력해주세요</h4>
 			<form action='<c:url value="/student/update.do" />' method='post'> 
-				<input type='hidden' name='up_stu_no' value='${stu_no}'/>
-				<input type='hidden' name='menu' value='${"updateAll"}'/>
-				학번 : <input type = 'text' name=stu_no value="${stu_no}" /><br>
-				이름 : <input type = 'text' name='stu_name' value="${stu_name}"/><br>
-				점수 : <input type = 'text' name='stu_score' value="${stu_score}"/><br>
+				<input type='hidden' name='menu' value='${"update"}'/>
+				학번 : <input type = 'text' name=stu_no value="${student.stu_no}" readonly="readonly"/><br>
+				이름 : <input type = 'text' name='stu_name' value="${student.stu_name}"/><br>
+				점수 : <input type = 'text' name='stu_score' value="${student.stu_score}"/><br>
 				<input type="submit" value='변경'/>
 			</form>	
 		</c:when>
