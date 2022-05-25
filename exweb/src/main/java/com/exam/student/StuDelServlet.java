@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/student/delete.do")
 public class StuDelServlet extends HttpServlet { 
 	StudentDAO studentDao = new StudentDaoMybatis();
+	
+	//StuDelServlet 클래스를 StuUpServlet의 doGet으로 넣어서 이 서블릿은 더이상 움직이지 않음
 	@Override 
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

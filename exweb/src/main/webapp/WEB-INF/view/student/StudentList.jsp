@@ -55,7 +55,7 @@ input{
 	
 	<figure>
 		<figcaption>
-			<form action='<c:url value="/student/form.do" />' method='get'>
+			<form action='<c:url value="/student/add.do" />' method='get'>
 			<input type='hidden' name='menu' value='insert'/>
 			<input type='submit' value='학생 정보 입력'/>
 			</form>
@@ -79,7 +79,7 @@ input{
 				<td>${vo.stu_name}</td>
 				<td>${vo.stu_score}</td>
 				<td>
-					<form class="btn-del" action='<c:url value="/student/delete.do" />' method='get'>
+					<form class="btn-del" action='<c:url value="/student/update.do" />' method='get'>
 						<input type='hidden' name='stu_no' value='${vo.stu_no}'/>
 						<input type='submit' value='삭제'/>
 					</form> 

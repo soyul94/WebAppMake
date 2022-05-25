@@ -14,8 +14,29 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/student/add.do")
 public class StuAddServlet extends HttpServlet { 
 	StudentDAO studentDao = new StudentDaoMybatis(); 
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("StuFormServlet 실행 !");
+		req.setCharacterEncoding("UTF-8");
+		resp.setContentType("text/html; charset=UTF-8");
+		
+		StudentVO student = new StudentVO();
+		
+		String menu=req.getParameter("menu");
+		
+		if(menu.equals("update")) {
+			student.setStu_no(req.getParameter("stu_no")) ;
+			student.setStu_name(req.getParameter("stu_name")) ;
+			student.setStu_score(Integer.parseInt(req.getParameter("stu_score")));		
+			req.setAttribute("student", student);
+		}
+		
+		req.setAttribute("menu", menu);
+		req.getRequestDispatcher("/WEB-INF/view/student/StudentForm.jsp").forward(req, resp);
+	}
+	
 	@Override 
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		System.out.println("StuAddServlet 실행 ! ");		
 		req.setCharacterEncoding("UTF-8");//post방식으로 전송되는 한글파라미터 인코딩	

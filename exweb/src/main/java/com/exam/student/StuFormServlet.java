@@ -12,29 +12,25 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/student/form.do")
 public class StuFormServlet extends HttpServlet{
 	
+	//StuFormServlet 클래스를 StuAddServlet의 doGet으로 넣어서 이 서블릿은 더이상 움직이지 않음
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("StuFormServlet 실행 !");
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html; charset=UTF-8");
-		String stu_no=null;
-		String stu_name=null;
-		Integer stu_score=null;
+		
 		StudentVO student=null;
 		
 		String menu=req.getParameter("menu");
 		
 		if(menu.equals("update")) {
-			stu_no=req.getParameter("stu_no");
-			stu_name=req.getParameter("stu_name");
-			stu_score= Integer.parseInt(req.getParameter("stu_score")) ; //이거 왜 get으로 꺼냈다가 다시 set하는지 설명 다시 듣기.
-			student =new StudentVO(stu_no,stu_name,stu_score);			
+			student.setStu_no(req.getParameter("stu_no")) ;
+			student.setStu_name(req.getParameter("stu_name")) ;
+			student.setStu_score(Integer.parseInt(req.getParameter("stu_score")));		
+			req.setAttribute("student", student);
 		}
 		
 		req.setAttribute("menu", menu);
-
-		req.setAttribute("student", student);
-		
 		req.getRequestDispatcher("/WEB-INF/view/student/StudentForm.jsp").forward(req, resp);
 
 /*

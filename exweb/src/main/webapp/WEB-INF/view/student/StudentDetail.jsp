@@ -69,14 +69,14 @@ input{
 		</table>
 	</figure>
 	<div style='display:flex; margin-left:30px;'>		
-		<form action='<c:url value="/student/form.do" />' method='get'>
+		<form action='<c:url value="/student/add.do" />' method='get'>
 			<input type='hidden' name='menu' value='update'/>
 			<input type='hidden' name='stu_no' value='${vo.stu_no}'/>
 			<input type='hidden' name='stu_name' value='${vo.stu_name}'/>
 			<input type='hidden' name='stu_score' value='${vo.stu_score}'/>
 			<input type='submit' value='학생 정보 변경'/>
 		</form> 
-		<form class="btn-del" action='<c:url value="/student/delete.do" />' method='get'>
+		<form class="btn-del" action='<c:url value="/student/update.do" />' method='get'>
 			<input type='hidden' name='stu_no' value='${vo.stu_no}'/>
 			<input type='submit' value='삭제'/>
 		</form>

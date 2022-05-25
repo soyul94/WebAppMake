@@ -14,8 +14,22 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/student/update.do")
 public class StuUpServlet extends HttpServlet { 
 	StudentDAO studentDao = new StudentDaoMybatis();
+	
 	@Override 
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("StuDelServlet 실행 ! ");		
+		req.setCharacterEncoding("UTF-8");//post방식으로 전송되는 한글파라미터 인코딩	
+		resp.setContentType("text/html; charset=UTF-8");
+		
+		String stu_no=req.getParameter("stu_no");
+		int num= studentDao.delete(stu_no);
+		
+		//resp.sedRedirect("이동할 주소") : 명령을 사용하여 웹브라우저에게 특정 주소로 이동하라는 명령을 담은 응답을 전송
+		resp.sendRedirect(req.getContextPath()+"/student/list.do");
+	}
+	
+	@Override 
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		System.out.println("StuUpServlet 실행 ! ");		
 		req.setCharacterEncoding("UTF-8");//post방식으로 전송되는 한글파라미터 인코딩	
