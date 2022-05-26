@@ -106,4 +106,10 @@ public class MemberDAOJdbc implements MemberDao {
 		return 0;
 	}
 
+	@Override
+	public MemberVO selectLoginMember(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }//class끝

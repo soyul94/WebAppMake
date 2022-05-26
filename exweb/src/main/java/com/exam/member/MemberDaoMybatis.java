@@ -8,9 +8,28 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import com.exam.comm.MyBatisUtil;
+
+/*
+	싱글톤(Singeton)패턴
+	: 클래스의 인스턴스를 1개만 생성하여 애플리케이션 천제에서 공유하여 사용하고 싶을 때 사용하는 "싱글톤패턴"
+	  외부에서 생성자 호출하는 것을 막음 -> 내부에서 인스턴스를 생성 및 보관 -> 외부에서 클래스가 필요할 때 내부에서 만들어 놓은 인스턴스를 제공
+	  하는 형태로 구현하여 사용한다.
+	+ 스프링을 사용하면 이는 이미 구현되어 있어 별도의 작업없이 싱글톤패턴을 사용할 수 있다. 
+*/
 public class MemberDaoMybatis implements MemberDao{
-	SqlSessionFactory sqlSessionFactory=null; // 모든 메소드에서 쓰기위해 밖으로 꺼냄.
+	// 모든 메소드에서 쓰기위해 밖으로 꺼냄.
+	private SqlSessionFactory sqlSessionFactory= MyBatisUtil.getSqlSessionFactory(); 
 	
+	//MemberDaoMybatis클래스를 외부에서 생성할 수 없게 만든 뒤 내부에서 생성된 static을 외부에서 가져다 쓸 수 있게 함.
+	private static MemberDaoMybatis memberDaoMybatis = new MemberDaoMybatis();
+	public static MemberDaoMybatis getMemberDaoMybatis() {return memberDaoMybatis;}
+	
+	//클래스 외부에서 생성자 호출을 금지 : 생성자를 다른 곳에서 사용하지 못하게 막음
+	private MemberDaoMybatis() {}
+	
+	
+/*
 	public MemberDaoMybatis() {//생성자.
 		//파일이 없으면 에러가 나기 때문에 try-catch해줘야함
 		try {
@@ -22,6 +41,7 @@ public class MemberDaoMybatis implements MemberDao{
 			e.printStackTrace();
 		}
 	}
+*/	
 	
 	@Override
 	public List<MemberVO> selectMemberList() {
@@ -44,6 +64,16 @@ public class MemberDaoMybatis implements MemberDao{
 			  vo = sqlSession.selectOne("com.exam.member.MemberDao.selectMember",memId);
 		}
 		return vo;
+	}
+	
+	@Override
+	public MemberVO selectLoginMember(MemberVO vo) {
+		MemberVO result=null;
+		
+		try (SqlSession sqlSession = sqlSessionFactory.openSession()) { 
+			  result = sqlSession.selectOne("com.exam.member.MemberDao.selectLoginMember",vo);
+		}																		// 인자는 1가지만 받을 수 있다.
+		return result;
 	}
 
 	@Override
@@ -75,4 +105,5 @@ public class MemberDaoMybatis implements MemberDao{
 			}//tmi: sqlSession의 메소드를 delete를 쓰던 insert를 쓰던 메소드 실행 주소를 실행시켜 수행결과는 동일하나 그래도 쿼리에 맞는 이름의 메소드를 쓰자.		
 		return result;
 	}
+
 }

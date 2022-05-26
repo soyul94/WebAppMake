@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /*
 4월 28일 과제
@@ -22,18 +23,28 @@ import javax.servlet.http.HttpServletResponse;
 public class MemListServlet extends HttpServlet { 
 	//MemberDao memberDao = new MemberDAOJdbc(); //service가 몇번이 실행되던 1번만 생성되어야 하기 때문에 service 밖에 있어야한다.
 	
-	MemberDao memberDao = new MemberDaoMybatis();
+	MemberDao memberDao = MemberDaoMybatis.getMemberDaoMybatis();
 	
 	@Override 
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 클라이언트가 "member/list.do"로 요청을 보내면 웹브라우저에 회원목록이 출력되도록 구현
 		System.out.println("MemListServlet 실행 ! ");
 		
-		List<MemberVO> list = memberDao.selectMemberList(); //테이블을 읽는 것은 요청이 올 때마다 실행.
-		req.setAttribute("memList", list);
+		HttpSession session = req.getSession();
+		MemberVO vo= (MemberVO)session.getAttribute("loginUser");// 로그인한 사용자정보를 가져오기
+					//getAttribute() 메소드를 이용해서 꺼낸 값의 형태는 미정이므로 컴터가 알 수 있게 강제형변환을 해줘야한다.
 		
-		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/member/MemList.jsp");
-		rd.forward(req, resp);//자기가 받은 요청객체와 응답객체를 설정된 jsp로 보냄
+		if(vo==null) { //로그인이 되지 않았을 때 강제로 로그인 페이지로 이동시킴
+			resp.sendRedirect(req.getContextPath()+"/member/login.do");
+		}
+		else { //로그인이 되어 있으 경우 리스트를 출력함
+			List<MemberVO> list = memberDao.selectMemberList(); //테이블을 읽는 것은 요청이 올 때마다 실행.
+			req.setAttribute("memList", list);
+			
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/member/MemList.jsp");
+			rd.forward(req, resp);//자기가 받은 요청객체와 응답객체를 설정된 jsp로 보냄
+		}
+		
 
 		
 /*

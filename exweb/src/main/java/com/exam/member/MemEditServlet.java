@@ -10,10 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+//2022.05.26 과제
+//1. 변경하려는 회원아이디가 로그인한 회원의 아이디가 아닌 경우 변경이 불가하도록 구현
+//2. 회원정보변경 화면에서도 화면의 회원아이디가 로그인한 회원의 아이디와 다르다면 
+//   이름과 포인트 값이 변경 불가능하고 버튼도 출력되지 않도록 구현.
+
 
 @WebServlet("/member/edit.do")
 public class MemEditServlet extends HttpServlet { 
-	MemberDao memberDao = new MemberDaoMybatis(); //service가 몇번이 실행되던 1번만 생성되어야 하기 때문에 service 밖에 있어야한다.
+	MemberDao memberDao = MemberDaoMybatis.getMemberDaoMybatis(); //service가 몇번이 실행되던 1번만 생성되어야 하기 때문에 service 밖에 있어야한다.
 	
 	@Override 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,7 +39,7 @@ public class MemEditServlet extends HttpServlet {
 		
 		MemberVO vo= new MemberVO();
 		vo.setMemId(req.getParameter("memId"));
-		vo.setMemPW(req.getParameter("memPW"));
+		//vo.setMemPW(req.getParameter("memPW"));
 		vo.setMemName(req.getParameter("memName"));
 		vo.setMemPoint(Integer.parseInt(req.getParameter("memPoint")));
 		int num= memberDao.updateMember(vo);

@@ -74,7 +74,7 @@
   	<url-pattern>/life.do</url-pattern>
   </servlet-mapping>
   
-  
+  <!-- Fileter 등록 순서대로 실행된다. -->
   <!-- MyFilter 등록하기 -->
   	<filter>
   		<filter-name>encFilter</filter-name> <!-- 변수명 처럼 필터의 이름 설정 -->
@@ -87,6 +87,17 @@
   	<filter-mapping>
   		<filter-name>encFilter</filter-name> <!-- 요청주소와 매핑할 필터 이름 -->
   		<url-pattern>/*</url-pattern><!-- 모든 주소에서 해당 필터를 수행 --> 		
+  		<!--
+  		<url-pattern>/member/*</url-pattern> 필터를 실행할 주소 : /member/로 시작하는 모든 주소를 의미 -->
+  	</filter-mapping>	
+  <!-- LoginFilter 등록하기 -->
+	<filter>
+  		<filter-name>loginFilter</filter-name> <!-- 변수명 처럼 필터의 이름 설정 -->
+  		<filter-class>com.exam.comm.LoginFilter</filter-class><!-- 매핑할 클래스 위치 등록 -->
+ 	</filter>
+  	<filter-mapping>
+  		<filter-name>loginFilter</filter-name> <!-- 요청주소와 매핑할 필터 이름 -->
+  		<url-pattern>/member/*</url-pattern><!--필터를 실행할 주소 : /member/로 시작하는 모든 주소를 의미 -->		
   		<!--
   		<url-pattern>/member/*</url-pattern> 필터를 실행할 주소 : /member/로 시작하는 모든 주소를 의미 -->
   	</filter-mapping>

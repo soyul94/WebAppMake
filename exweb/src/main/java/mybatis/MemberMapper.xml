@@ -18,11 +18,11 @@
 	</resultMap>
 	
 	<select id="selectMember" resultType="MemberVO" parameterType="string" >
-		select MEM_ID , MEM_PW, MEM_NAME, MEM_POINT from member_table where MEM_ID=#{memId}
+		select MEM_ID, MEM_NAME, MEM_POINT from member_table where MEM_ID=#{memId}
 	</select>
 	
 	<select id="selectMemberList" resultType="MemberVO">
-    	select MEM_ID , MEM_PW, MEM_NAME, MEM_POINT from member_table
+    	select MEM_ID, MEM_NAME, MEM_POINT from member_table
 	</select>	 
 <!--<select id="selectMemberList" resultMap="memberVo">
     	select MEM_ID , MEM_PW, MEM_NAME, MEM_POINT from member_table
@@ -30,6 +30,11 @@
 <!--<select id="selectMemberList" resultType="com.exam.member.MemberVO">
     	select MEM_ID as memId, MEM_PW as memPw, MEM_NAME as memName, MEM_POINT as memPoint from member_table
 	</select> -->
+	
+	<select id="selectLoginMember" resultType="MemberVO" parameterType="com.exam.member.MemberVO">
+		select MEM_ID, MEM_NAME, MEM_POINT from member_table where MEM_ID=#{memId} and MEM_PW=#{memPW}
+	</select>
+	<!-- parameterType을 명시하지 않아도 에러는 발생하지 않으나 권장사항이다. -->
 	
 	<insert id="insertMember" parameterType="com.exam.member.MemberVO" >
 		INSERT INTO MEMBER_TABLE(MEM_ID, MEM_PW, MEM_NAME, MEM_POINT) VALUES(#{memId}, #{memPW}, #{memName}, #{memPoint})
@@ -39,7 +44,7 @@
 		 ${}는 그냥 값이 들어가는게 아니라 문자열을 +연산하는 형태로 들어가서 쿼리문을 비정상으로 종료시키는 값에 대응할 수 없음 -->
 	
 	<update id="updateMember" parameterType="com.exam.member.MemberVO">
-		update MEMBER_TABLE set MEM_PW=#{memPW}, MEM_NAME=#{memName}, MEM_POINT=#{memPoint} where MEM_ID=#{memId}
+		update MEMBER_TABLE set MEM_NAME=#{memName}, MEM_POINT=#{memPoint} where MEM_ID=#{memId}
 	</update>
 		 
 	<delete id="deleteMember" parameterType="string">

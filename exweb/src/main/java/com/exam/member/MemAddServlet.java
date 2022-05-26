@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 //웹브라우저에서 "http://localhost:8000/exweb/student/list.do"로 접속하면 학생목록이 출력되도록 구현
 @WebServlet("/member/add.do")
 public class MemAddServlet extends HttpServlet { 
-	MemberDao memberDao = new MemberDaoMybatis(); //service가 몇번이 실행되던 1번만 생성되어야 하기 때문에 service 밖에 있어야한다.
+	MemberDao memberDao = MemberDaoMybatis.getMemberDaoMybatis(); //service가 몇번이 실행되던 1번만 생성되어야 하기 때문에 service 밖에 있어야한다.
 	/*
 		서블릿의 service()메서드 :  요청방식에 상관없이 실행되는 메서드
 		서블릿의 doXxx()메서드 : 요청방식이 xxx인 경우에 실행되는 메서드
